@@ -4,7 +4,7 @@ provider "google" {
 }
 
 resource "google_storage_bucket" "my_bucket" {
-  name                     = "github-action-gcs123_new"
+  name                     = "github-action-gcs123_newest"
   location                 = "EU"
   force_destroy            = true
   public_access_prevention = "enforced"
