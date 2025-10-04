@@ -13,6 +13,21 @@ provider "google" {
 }
 
 # --------------------------
+# IAM Permissions for GitHub Actions
+# --------------------------
+resource "google_project_iam_member" "ci_cd_storage_access" {
+  project = var.project_id
+  role    = "roles/storage.objectAdmin"
+  member  = "serviceAccount:${var.github_actions_sa}"
+}
+
+resource "google_project_iam_member" "ci_cd_composer_access" {
+  project = var.project_id
+  role    = "roles/composer.admin"
+  member  = "serviceAccount:${var.github_actions_sa}"
+}
+
+# --------------------------
 # Google Cloud Storage (data bucket)
 # --------------------------
 # resource "google_storage_bucket" "data_bucket" {
