@@ -43,16 +43,20 @@ provider "google" {
 # --------------------------
 # Cloud Composer Environment
 # --------------------------
-resource "google_composer_environment" "lbg_composer" {
-  name   = "lbg-composer"
-  region = var.region
+# resource "google_composer_environment" "lbg_composer" {
+#   name            = "lbg-composer"
+#   region          = var.region
+#   service_account = "your-service-account@lbg123-473910.iam.gserviceaccount.com"
 
-  config {
-    software_config {
-      image_version = "composer-3-airflow-2.10.5-build.14"
-    }
-  }
-}
+#   config {
+#     software_config {
+#       image_version = "composer-3-airflow-2.10.5-build.14"
+#     }
+
+#     # node_config removed — Composer 3 ignores machine_type/node_count
+#   }
+# }
+
 
 
 # --------------------------
