@@ -48,15 +48,20 @@ resource "google_composer_environment" "lbg_composer" {
   region = var.region
 
   config {
-    node_count = 3
+    node_config {
+      machine_type = "e2-medium"
+      # node_count is optional, default is 3
+      # location field is removed
+    }
+
     software_config {
-      image_version = "composer-2.6.6" # adjust to match your live version
+      image_version = "composer-3-airflow-2.10.5-build.14"
     }
   }
 }
 
 # --------------------------
-# Composer DAG (uploaded to DAG bucket)
+# Composer DAG (managed by Terraform)
 # --------------------------
 resource "google_storage_bucket_object" "dag_file" {
   name   = "dags/gcs_to_bigquery_pipeline_2.0.py"

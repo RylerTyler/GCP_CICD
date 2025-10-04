@@ -1,0 +1,32 @@
+[
+  {
+    "name": "transaction_id",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "customer_id",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "amount",
+    "type": "FLOAT",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "currency",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "transaction_date",
+    "type": "DATETIME",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "merchant",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  }
+]
