@@ -15,30 +15,30 @@ provider "google" {
 # --------------------------
 # Google Cloud Storage (data bucket)
 # --------------------------
-resource "google_storage_bucket" "data_bucket" {
-  name     = "lbg_customer_transaction"
-  location = var.region
-}
+# resource "google_storage_bucket" "data_bucket" {
+#   name     = "lbg_customer_transaction"
+#   location = var.region
+# }
 
 # --------------------------
 # BigQuery Dataset and Tables
 # --------------------------
-resource "google_bigquery_dataset" "analytics" {
-  dataset_id = "analytics"
-  location   = var.region
-}
+# resource "google_bigquery_dataset" "analytics" {
+#   dataset_id = "analytics"
+#   location   = var.region
+# }
 
-resource "google_bigquery_table" "customers" {
-  dataset_id = google_bigquery_dataset.analytics.dataset_id
-  table_id   = "customers"
-  schema     = file("schemas/customers_schema.json")
-}
+# resource "google_bigquery_table" "customers" {
+#   dataset_id = google_bigquery_dataset.analytics.dataset_id
+#   table_id   = "customers"
+#   schema     = file("schemas/customers_schema.json")
+# }
 
-resource "google_bigquery_table" "transactions" {
-  dataset_id = google_bigquery_dataset.analytics.dataset_id
-  table_id   = "transactions"
-  schema     = file("schemas/transactions_schema.json")
-}
+# resource "google_bigquery_table" "transactions" {
+#   dataset_id = google_bigquery_dataset.analytics.dataset_id
+#   table_id   = "transactions"
+#   schema     = file("schemas/transactions_schema.json")
+# }
 
 # --------------------------
 # Cloud Composer Environment
@@ -48,23 +48,18 @@ resource "google_composer_environment" "lbg_composer" {
   region = var.region
 
   config {
-    node_config {
-      machine_type = "e2-medium"
-      # node_count is optional, default is 3
-      # location field is removed
-    }
-
     software_config {
       image_version = "composer-3-airflow-2.10.5-build.14"
     }
   }
 }
 
+
 # --------------------------
 # Composer DAG (managed by Terraform)
 # --------------------------
 resource "google_storage_bucket_object" "dag_file" {
-  name   = "dags/gcs_to_bigquery_pipeline_2.0.py"
+  name   = "dags/gcs_to_bigquery_pipeline_2.py"
   bucket = "europe-west2-lbg-composer-69e2495f-bucket"
-  source = "dags/gcs_to_bigquery_pipeline_2.0.py"
+  source = "dags/gcs_to_bigquery_pipeline_2.py"
 }
