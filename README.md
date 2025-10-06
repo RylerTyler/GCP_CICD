@@ -25,9 +25,19 @@ GCP_CICD/
 │   └── gcs_to_bigquery_pipeline_2.0.py
 └── .github/
     └── workflows/
-        └── terraform.yml    # GitHub Actions workflow
+        └── terraform.yml    # GitHub Actions workflow 
+        
+Setup Instructions
 
-Setup
+Before starting ensure your GCP account has the following permissions:
+- `roles/storage.admin` for Cloud Storage
+- `roles/bigquery.admin` for BigQuery datasets
+- -Plus others
+
+Authenticate with GCP:
+```bash
+gcloud auth login
+gcloud config set project <PROJECT_ID>
 
 1. Clone repo:
 
