@@ -40,13 +40,15 @@ terraform init
 terraform validate
 terraform fmt
 
-3. Import existing resources (if already created):
+3. Import existing resources (if already created, if not skip this step and go to 3.1):
 
 terraform import google_storage_bucket.data_bucket lbg_customer_transaction
 terraform import google_bigquery_dataset.analytics projects/<PROJECT_ID>/datasets/analytics
 terraform import google_bigquery_table.customers projects/<PROJECT_ID>/datasets/analytics/tables/customers
 terraform import google_bigquery_table.transactions projects/<PROJECT_ID>/datasets/analytics/tables/transactions
 terraform import google_composer_environment.lbg_composer projects/<PROJECT_ID>/locations/<REGION>/environments/lbg-composer
+
+3.1 Uncomment code in main.tf to create tables, buckets etc (If already created, skip this step)
 
 4. Plan and apply
 
